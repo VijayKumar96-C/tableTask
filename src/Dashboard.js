@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ListCard from "./ListCard";
 import Table from "./Table";
+import SignIn from "./SignIn";
 
 const Dashboard = () => {
     const [data, setData] = useState([])
@@ -38,6 +39,7 @@ const Dashboard = () => {
     } 
     return (
         <div>
+          <SignIn/>
             { !showTable && <ListCard data={data} dataFromList={dataFromList} />}
             { showTable && <Table data={selectedData} setShowTable={setShowTable} />}
         </div>

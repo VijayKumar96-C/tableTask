@@ -15,7 +15,6 @@ const Dashboard = () => {
                 .then((res) => {
                     setData(res.data)
                 } )
-                console.log("data",res.data)
             } catch (err) {
                 console.log(err.message)
             }
@@ -24,7 +23,6 @@ const Dashboard = () => {
     },[])
 
     const dataFromList = (list) => {
-        console.log("list from dashboard",list)
         const filterObject =data.map((ele)=>{
             return (
                 Object.keys(ele).reduce((acc,key) => {
@@ -35,13 +33,12 @@ const Dashboard = () => {
                 }, {} )
             )
         }) 
-        console.log("filtered object",filterObject)
         setSelectedData(filterObject)
         setShowTable(true)
     } 
     return (
         <div>
-            { !showTable && <ListCard data={data} dataFromList={dataFromList} selectedData={selectedData} />}
+            { !showTable && <ListCard data={data} dataFromList={dataFromList} />}
             { showTable && <Table data={selectedData} setShowTable={setShowTable} />}
         </div>
     )

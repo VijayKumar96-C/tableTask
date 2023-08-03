@@ -1,11 +1,10 @@
 import './App.css';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Dashboard from './Dashboard';
 
 function App() {
-
   return (
-    <div className="App">
+    <div >
       <Dashboard />
     </div>
   );

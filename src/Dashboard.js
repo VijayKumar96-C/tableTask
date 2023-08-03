@@ -2,64 +2,27 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ListCard from "./ListCard";
 import Table from "./Table";
+import Login1 from "./Login1"
 
 const Dashboard = () => {
-    const [data, setData] = useState([
-        {
-          postId: 1,
-          id: 1,
-          name: "id labore ex et quam laborum",
-          email: "Eliseo@gardner.biz",
-          body: "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
-        },
-        {
-            postId: 1,
-            id: 2,
-            name: "id labore ex et quam laborum",
-            email: "Eliseo@gardner.biz",
-            body: "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
-          },
-          {
-            postId: 1,
-            id: 3,
-            name: "id labore ex et quam laborum",
-            email: "Eliseo@gardner.biz",
-            body: "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
-          },
-          {
-            postId: 1,
-            id: 4,
-            name: "id labore ex et quam laborum",
-            email: "Eliseo@gardner.biz",
-            body: "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
-          },
-          {
-            postId: 1,
-            id: 5,
-            name: "id labore ex et quam laborum",
-            email: "Eliseo@gardner.biz",
-            body: "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
-          },
-       
-      ])
+    const [data, setData] = useState([])
     const [selectedData, setSelectedData] = useState([])
     const [showTable, setShowTable] = useState(false)
 
-    // useEffect(() => {
-    //     const getData = async () => {
-    //         try {
-    //             const res = await axios.get("https://jsonplaceholder.typicode.com/posts/1/comments")
-    //             .then((res) => {
-    //                 setData(res.data)
-    //             } )
-    //             console.log("data",res.data)
-    //         } catch (err) {
-    //             console.log(err.message)
-    //         }
-    //     }
-    //     getData()
-
-    // },[])
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const res = await axios.get("https://jsonplaceholder.typicode.com/posts/1/comments")
+                .then((res) => {
+                    setData(res.data)
+                } )
+                console.log("data",res.data)
+            } catch (err) {
+                console.log(err.message)
+            }
+        }
+        getData()
+    },[])
 
     const dataFromList = (list) => {
         console.log("list from dashboard",list)
@@ -79,8 +42,8 @@ const Dashboard = () => {
     } 
     return (
         <div>
-            <ListCard data={data} dataFromList={dataFromList} />
-            { showTable && <Table data={selectedData} />}
+            { !showTable && <ListCard data={data} dataFromList={dataFromList} selectedData={selectedData} />}
+            { showTable && <Table data={selectedData} setShowTable={setShowTable} />}
         </div>
     )
 }

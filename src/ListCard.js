@@ -1,30 +1,38 @@
-import React, { useState } from "react";
-import { List,ListItem,ListItemButton,ListItemIcon,ListItemText,Checkbox,IconButton } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, Checkbox, IconButton, Button, Card, CardContent, Typography } from "@mui/material";
 // import CommentIcon from '@mui/icons-material/Comment';
 
-const ListCard = ({data,dataFromList}) => {
+const ListCard = ({ data, dataFromList, selectedData }) => {
     const [selectedValue, setSelectedValue] = useState([])
-
+    const [ isChecked, setChecked] = useState(false)
+    
     const handleChange = (e) => {
-        console.log("targetId",e.target.id)
-        setSelectedValue([...selectedValue,e.target.id])
+        console.log("targetId", e.target.id)
+        setSelectedValue([...selectedValue, e.target.id])
+        setChecked(!isChecked)
     }
 
     const handlApplyButton = () => {
         dataFromList(selectedValue)
-        console.log("selectedValue",selectedValue)
+        console.log("selectedValue", selectedValue)
     }
 
     return (
         <div>
-            Please select the columns to display
-            <ul>
-                {Object.keys(data[0]).map((ele, i) => {
-                    return (
-                        <li key={i} ><input type="checkbox" id={ele} onChange={handleChange}  ></input>{ele}</li>)
-                })}
-            </ul>
-            <button onClick={handlApplyButton} >Apply</button>
+            <Card sx={{ m: 20, minWidth: 275 }} >
+                <CardContent>
+                    <Typography sx={{ textAlign: 'center' }} variant="h5" component="div" align="middle">
+                        Please select the columns to display
+                    </Typography>
+                    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} >
+                        {data[0] && Object.keys(data[0]).map((ele, i) => {
+                            return ( 
+                                <ListItem key={i} ><Checkbox  id={ele} onChange={handleChange} />{ele}</ListItem>)
+                        })}
+                    </List>
+                    <Button onClick={handlApplyButton} variant="contained" sx={{ mx: 12, my: 2 }} >Apply</Button>
+                </CardContent>
+            </Card>
         </div>
     )
 }

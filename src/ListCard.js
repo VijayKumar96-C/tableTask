@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, Checkbox, IconButton, Button, Card, CardContent, Typography } from "@mui/material";
-// import CommentIcon from '@mui/icons-material/Comment';
+import React, { useState } from "react";
+import { List, ListItem, Checkbox, Button, Card, CardContent, Typography } from "@mui/material";
+
 
 const ListCard = ({ data, dataFromList, selectedData }) => {
     const [selectedValue, setSelectedValue] = useState([])

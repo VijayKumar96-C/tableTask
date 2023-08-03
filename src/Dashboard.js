@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ListCard from "./ListCard";
 import Table from "./Table";
-import Login1 from "./Login1"
 
 const Dashboard = () => {
     const [data, setData] = useState([])
